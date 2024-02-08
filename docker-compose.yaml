@@ -1,11 +1,13 @@
 # docker-compose.yml
 version: "3.7"
 services:
-  cron:
+  cron-runner:
     build:
       context: ./
       dockerfile: Dockerfile
+    image: cron-runner
     container_name: cron-runner
     restart: always # docker起動時に毎回自動起動
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # ホストのdockerソケットをマウントすることでDooDを可能に
+      - ./crontabs:/var/spool/cron/crontabs

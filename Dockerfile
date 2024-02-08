@@ -9,7 +9,5 @@ RUN apt-get update -y \
     | tee /etc/apt/sources.list.d/docker.list > /dev/null \
     && apt-get update -y \
     && apt-get install -y docker-ce-cli
-ADD crontab /var/spool/cron/crontabs/root
-RUN crontab /var/spool/cron/crontabs/root
 # crondをフォアグラウンドで標準出力を使用して起動
-CMD cron -f
+CMD crontab /var/spool/cron/crontabs/root && cron -f
