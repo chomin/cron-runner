@@ -5,9 +5,9 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: cron-runner
+    image: ${IMAGE_REPOSITORY}:${IMAGE_TAG}
     container_name: cron-runner
     restart: always # docker起動時に毎回自動起動
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # ホストのdockerソケットをマウントすることでDooDを可能に
-      - ./crontabs:/var/spool/cron/crontabs
+      - ./crontabs:/crontabs
